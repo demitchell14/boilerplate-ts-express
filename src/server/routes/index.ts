@@ -12,6 +12,7 @@ export default class RouterManager extends ServerRouter {
 
         this.getRouter().all('/', ErrorMiddleware(this.homeRoute));
         this.getRouter().all('/test', ErrorMiddleware(this.testRoute));
+        this.getRouter().all('/:id', ErrorMiddleware(this.anotherTestRoute));
     }
 
     testRoute: RequestHandler = async (req, res) => {
@@ -22,6 +23,15 @@ export default class RouterManager extends ServerRouter {
         res.send({
             hello: 'world',
         });
+    }
+
+    anotherTestRoute: RequestHandler = (req, res) => {
+        const timeout = Math.floor(Math.random() * 3000) + 1000;
+        setTimeout(() => {
+            res.send({
+                hello: 'world',
+            });
+        }, timeout);
     }
 
 }

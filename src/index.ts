@@ -15,7 +15,7 @@ async function start() {
     }))
 
     await server.start({
-        port: 3000,
+        port: Number.parseInt(process.env.PORT),
     });
 }
 
